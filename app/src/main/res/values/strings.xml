@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">KlopapierRechner</string>
-    <string name="title">Der Klopapier-Rechner</string>
-    <string name="description">Wie lange reicht mein Klopapier noch? Wann muss ich neues besorgen? Diese App hilft dir, das Ende der Rolle auf den Tag genau zu berechnen.</string>
+    <string name="app_name">Der Klopapier Rechner</string>
+    <string name="title">Wie lange reicht\nmeine Klopapier?!?</string>
+    <string name="description">Wie lange reicht mein Klopapier noch? Wann muss ich neues besorgen? Diese App hilft dir, das Ende deines Vorrats auf den Tag genau zu berechnen empfiehlt dir, wann du beim Einkaufen neues Papier besorgen solltest.</string>
     <string name="rollCountLabel">Anzahl der Rollen</string>
     <string name="personCountLabel">Anzahl der Personen im Haushalt</string>
     <string name="resultButtonLabel">Wie lange reicht der Vorrat?</string>
     <string name="defaultSliderValue">0</string>
+    <string name="resultInfo">Basierende auf deinen Angaben, können wir dir diese Empfehlung geben:</string>
+    <string name="resultString">Deine $ROLLS Rollen reichen für die $PEOPLE Personen in deinem Haushalt noch für $DAYS Tage.\n\nAm $SHOPPING_DAY solltest du beim Einkaufen wieder nach Klopapier Ausschau halten.</string>
 </resources>
