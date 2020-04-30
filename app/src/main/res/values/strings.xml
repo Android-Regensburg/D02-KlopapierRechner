@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KlopapierRechner</string>
+    <string name="title">Der Klopapier-Rechner</string>
+    <string name="description">Wie lange reicht mein Klopapier noch? Wann muss ich neues besorgen? Diese App hilft dir, das Ende der Rolle auf den Tag genau zu berechnen.</string>
+    <string name="rollCountLabel">Anzahl der Rollen</string>
+    <string name="personCountLabel">Anzahl der Personen im Haushalt</string>
+    <string name="resultButtonLabel">Wie lange reicht der Vorrat?</string>
+    <string name="defaultSliderValue">0</string>
+</resources>
