@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/text_app_title_results"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/results_title"
+        android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/title"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="32sp" />
+    <TextView
+        android:id="@+id/text_results_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:lineHeight="27sp"
+        android:text="@string/text_result_info"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_app_title_results" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineHeight="27sp"
-            android:text="@string/resultInfo"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/text_results_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineHeight="36sp"
+        android:text="@string/text_result_template"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_results_info" />
 
-        <TextView
-            android:id="@+id/resultView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:lineHeight="36sp"
-            android:text="@string/resultString"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

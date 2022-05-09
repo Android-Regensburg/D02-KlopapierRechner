@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import de.ur.mi.android.klopapierrechner.data.Config;
+import de.ur.mi.android.klopapierrechner.data.LooRollCalculatorConfig;
 
 /**
  * Mit dieser Anwendung haben NutzerInnen die Möglichkeit, ihren persönlichen Klopapierrollenvorrat
@@ -21,7 +20,7 @@ import de.ur.mi.android.klopapierrechner.data.Config;
 /**
  * Diese Activity dient der Eingabe der notwendigen Daten durch die NutzerInnen
  */
-public class InputActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+public class InputActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     /**
      * Instanzvariablen für die relevanten UI-Elemente zum Auslesen de ausgewählten Bestände an
@@ -40,20 +39,19 @@ public class InputActivity extends AppCompatActivity implements SeekBar.OnSeekBa
     private void initUI() {
         setContentView(R.layout.activity_input);
         // Erstellen der Referenzen auf die UI-Elemente aus der Layout-Datei
-        currentRollCount = findViewById(R.id.rollValue);
-        currentNumberOfPeople = findViewById(R.id.personValue);
+        currentRollCount = findViewById(R.id.text_rolls_value);
+        currentNumberOfPeople = findViewById(R.id.text_persons_value);
         // Die Initalisierung der SeekBars ist etwas komplexer und wird daher in eine separate
-        // Methode ausgelagert.
-        initSeekBar(R.id.rollSeeker, Config.MIN_NUMBER_OF_ROLLS, Config.MAX_NUMBER_OF_ROLLS, Config.DEFAULT_NUMBER_OF_ROLLS, this);
-        initSeekBar(R.id.personSeeker, Config.MIN_NUMBER_OF_PEOPLE, Config.MAX_NUMBER_OF_PEOPLE, Config.DEFAULT_NUMBER_OF_PEOPLE, this);
+        // Methode ausgelagert, die wiederverwendbar für beide Elemente gestaltet ist.
+        initSeekBar(R.id.seeker_rolls_value, LooRollCalculatorConfig.MIN_NUMBER_OF_ROLLS, LooRollCalculatorConfig.MAX_NUMBER_OF_ROLLS, LooRollCalculatorConfig.DEFAULT_NUMBER_OF_ROLLS, this);
+        initSeekBar(R.id.seeker_persons_value, LooRollCalculatorConfig.MIN_NUMBER_OF_PEOPLE, LooRollCalculatorConfig.MAX_NUMBER_OF_PEOPLE, LooRollCalculatorConfig.DEFAULT_NUMBER_OF_PEOPLE, this);
+        //
         Button resultButton = findViewById(R.id.resultButton);
-        // Die Activity selbst dient als Listener für die Klicks auf den Button (dazu wird das
-        // ensprechende Interface implementiert).
-        resultButton.setOnClickListener(this);
+        resultButton.setOnClickListener(v -> onResultButtonClicked());
     }
 
     /**
-     * Initalisiert eine beliebige SeekBar, die über die übergebene ID identifiziert wird, mit
+     * Initialisiert eine beliebige SeekBar, die über die übergebene ID identifiziert wird, mit
      * einem Minimalwert, einem Maximalwert, einem aktuellen Wert und einem Listener, der über
      * Änderungen (ausgelöst durch die Verwendung der Bar durch NutzerInnen) informiert wird.
      */
@@ -98,13 +96,14 @@ public class InputActivity extends AppCompatActivity implements SeekBar.OnSeekBa
         // Auslesen der aktuell ausgewählten Anzahl an Personen im Haushalt
         int numberOfPeople = Integer.parseInt(currentNumberOfPeople.getText().toString());
         // Erstellen des Intents zum Wechsel von dieser in die nächste Activit
-        Intent intent = new Intent(InputActivity.this, OutputActivity.class);
+        Intent intent = new Intent(getBaseContext(), OutputActivity.class);
         // Hinzufügen der ausgewählten Werte zum Intent, damit diese in der nächsten Activity
         // genutzt werden können
-        intent.putExtra(Config.ROLL_KEY, numberOfRolls);
-        intent.putExtra(Config.PEOPLE_KEY, numberOfPeople);
+        intent.putExtra(OutputActivity.ROLLS_KEY, numberOfRolls);
+        intent.putExtra(OutputActivity.PEOPLE_KEY, numberOfPeople);
         // Starten der zweiten Activity
         startActivity(intent);
+
     }
 
     /**
@@ -119,10 +118,10 @@ public class InputActivity extends AppCompatActivity implements SeekBar.OnSeekBa
         // von den NutzerInnen ausgewählt wurde, wird als "progress" an die Callback-Methode
         // übergeben.
         switch (seekBar.getId()) {
-            case R.id.rollSeeker:
+            case R.id.seeker_rolls_value:
                 onRollCountChanged(progress);
                 break;
-            case R.id.personSeeker:
+            case R.id.seeker_persons_value:
                 onPeopleCountChanged(progress);
                 break;
             default:
@@ -152,14 +151,4 @@ public class InputActivity extends AppCompatActivity implements SeekBar.OnSeekBa
 
     }
 
-    /**
-     * Callback, der Aufgerufen wird, wenn NutzerInnen auf den Button klicken
-     */
-    @Override
-    public void onClick(View v) {
-        // Die Programmlogik bzw. der Ablauf, der beim Klick auf den Button ausgeführt wird, wird
-        // in einer separaten Methode implementiert. Versuchen Sie die Callback-Methode so
-        // übersichtlich wie möglich zu halten.
-        onResultButtonClicked();
-    }
 }

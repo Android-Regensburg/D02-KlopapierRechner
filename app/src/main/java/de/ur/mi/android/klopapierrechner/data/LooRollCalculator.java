@@ -18,9 +18,9 @@ public class LooRollCalculator {
     private static final int SAFETY_BUFFER_IN_DAYS = 3;
 
     // Instanzvariable für tatsächliche Anzahl an Rollen
-    private int numberOfRolls = Config.DEFAULT_NUMBER_OF_ROLLS;
+    private int numberOfRolls = LooRollCalculatorConfig.DEFAULT_NUMBER_OF_ROLLS;
     // Instanzvariable für tatsächliche Anzahl an Personen im Haushalt
-    private int numberOfPeople = Config.DEFAULT_NUMBER_OF_PEOPLE;
+    private int numberOfPeople = LooRollCalculatorConfig.DEFAULT_NUMBER_OF_PEOPLE;
 
     // Erlaubt das Eintragen der tatsächlichen Anzahl verfügbarer Rollen
     public void setNumberOfRolls(int rolls) {

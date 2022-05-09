@@ -6,7 +6,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.ur.mi.android.klopapierrechner.data.Config;
 import de.ur.mi.android.klopapierrechner.data.LooRollCalculator;
 
 /**
@@ -14,6 +13,10 @@ import de.ur.mi.android.klopapierrechner.data.LooRollCalculator;
  */
 
 public class OutputActivity extends AppCompatActivity {
+
+    // Öffentliche Konstanten für die Extras, die beim Aufruf dieser Activity übergeben werden
+    public static final String ROLLS_KEY = "NUMBER OF ROLLS";
+    public static final String PEOPLE_KEY = "NUMBER OF PEOPLE";
 
     // Instanzvariable für Referenz auf TextView zum Anzeigen der Infonachricht
     private TextView resultView;
@@ -27,7 +30,7 @@ public class OutputActivity extends AppCompatActivity {
 
     private void initUI() {
         setContentView(R.layout.activity_output);
-        resultView = findViewById(R.id.resultView);
+        resultView = findViewById(R.id.text_results_value);
     }
 
     /**
@@ -41,9 +44,9 @@ public class OutputActivity extends AppCompatActivity {
         // Auslesen der übergebenen Extras aus dem Intent
         Bundle extras = getIntent().getExtras();
         // Auslesen der übergebenen Anzahl an vorhandenen Klopapierrollen
-        int numberOfRolls = extras.getInt(Config.ROLL_KEY);
+        int numberOfRolls = extras.getInt(ROLLS_KEY);
         // Auslesen der übergebenen Anzahl an Personen im Haushalt
-        int numberOfPeople = extras.getInt(Config.PEOPLE_KEY);
+        int numberOfPeople = extras.getInt(PEOPLE_KEY);
         // Berechnen der geschätzten Werte mit Hilfe des LooRollCalculator
         calculator.setNumberOfRolls(numberOfRolls);
         calculator.setNumberOfPeople(numberOfPeople);
@@ -64,11 +67,12 @@ public class OutputActivity extends AppCompatActivity {
      * @return Zusammengebauter Informationstext
      */
     private String createResultMessage(int numberOfRolls, int numberOfPeople, int daysUntilSuplyDepleted, String dayForNextShoppingTrip) {
-        String msg = getResources().getString(R.string.resultString);
+        String msg = getResources().getString(R.string.text_result_template);
         msg = msg.replace("$ROLLS", String.valueOf(numberOfRolls));
         msg = msg.replace("$PEOPLE", String.valueOf(numberOfPeople));
         msg = msg.replace("$DAYS", String.valueOf(daysUntilSuplyDepleted));
         msg = msg.replace("$SHOPPING_DAY", dayForNextShoppingTrip);
         return msg;
     }
+
 }
